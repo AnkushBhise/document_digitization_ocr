@@ -3,6 +3,7 @@ import pytesseract
 from pytesseract import Output
 import os
 from ocr import preprocess_image as pi
+from _helper import text
 
 
 def preprocess(image):
@@ -29,12 +30,35 @@ def plot_box_for_words(image, word_dict):
     return image
 
 
+def image_to_text(image):
+    return pytesseract.image_to_string(image, config='-c preserve_interword_spaces=1x1 --psm 1 --oem 3')
+
+
 if __name__ == "__main__":
-    image_path = os.path.join("data", "Image-1.jpg")
+    sel_file = "Image-1"
+    image_path = os.path.join("data", f"{sel_file}.jpg")
     img = cv2.imread(image_path)
 
     word_coordinate = get_image_data(img)
-    print(word_coordinate)
-    img = plot_box_for_words(img, word_coordinate)
-    cv2.imshow('original_image', img)
+    # print(word_coordinate)
+    process_img = plot_box_for_words(img, word_coordinate)
+    cv2.imshow(f'{sel_file}_image', process_img)
     cv2.waitKey(5000)
+
+    # Reading image again for image to doc conversion
+    img = cv2.imread(image_path)
+    text_data = image_to_text(img)
+    text.write_text_file(text_data, f"{sel_file}.txt")
+
+    # gray, thresh, _, _ = preprocess(img)
+    # word_coordinate = get_image_data(gray)
+    # print(word_coordinate)
+    # img = plot_box_for_words(gray, word_coordinate)
+    # cv2.imshow('gray_image', img)
+    # cv2.waitKey(5000)
+    #
+    # word_coordinate = get_image_data(thresh)
+    # print(word_coordinate)
+    # img = plot_box_for_words(thresh, word_coordinate)
+    # cv2.imshow('thresh_image', img)
+    # cv2.waitKey(5000)
