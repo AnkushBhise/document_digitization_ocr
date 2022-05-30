@@ -35,9 +35,10 @@ def image_to_text(image):
 
 
 if __name__ == "__main__":
-    sel_file = "Image-1"
-    image_path = os.path.join("data", f"{sel_file}.jpg")
+    sel_file = "1.png"
+    image_path = os.path.join("data", f"{sel_file}")
     img = cv2.imread(image_path)
+    img = pi.get_grayscale(img)
 
     word_coordinate = get_image_data(img)
     # print(word_coordinate)

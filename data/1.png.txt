@@ -1,0 +1,16 @@
+©  YourCompany
+
+Welcome to {$company_name}!
+
+Date: {$_date|date_format}{$customer_name}{$company_name}
+{$company_address}{$company_city}, {$company_state}, {$company_zip}Dear
+{$customer_name},Thank you for choosing {$company_name} for your website
+needs. We are pleased to serve you with the highest quality website design and
+development services. We have been committed to providing the best websites for
+over 10 years and we want to ensure you that we will do whatever it takes to meet
+your specific needs.As a token of our appreciation for your business, we would like
+to offer you a free website audit and review to discover if there are any areas that
+could be improved to help your website serve your better. To take advantage of the
+
+website review, please call us today to schedule a time to review your website with
+
